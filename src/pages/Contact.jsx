@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { MapPin, Clock, Phone, Mail, Loader2 } from 'lucide-react'
+import { MapPin, Clock, Phone, Mail, Loader2, Send } from 'lucide-react'
 import { ScrollReveal } from '../components/ui/ScrollReveal'
 import { SectionHeader } from '../components/ui/SectionHeader'
-import { storeInfo } from '../data/content'
+import { storeInfo, visitImage } from '../data/content'
 import { submitContactForm } from '../lib/mockApi'
 import { usePageAnalytics, useScrollDepth, useClickTracker } from '../hooks/useAnalytics'
 import { useToast } from '../context/ToastContext'
@@ -54,146 +54,171 @@ export function Contact() {
         />
       </Helmet>
 
-      <div className="pt-28 pb-16 px-6">
+      <div className="pt-28 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
             number="Contact"
             title="Say hello."
             subtitle="Table reservations are free. Questions about events? Want to schedule a demo? Fill out the form or give us a call."
-            light
           />
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <ScrollReveal>
-              <form
-                onSubmit={handleSubmit}
-                className="bg-white border border-forge-200 rounded-xl p-8 space-y-5"
-              >
-                <div>
-                  <label className="block text-sm font-medium text-forge-800 mb-1">Name</label>
-                  <input
-                    type="text"
-                    value={form.name}
-                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg border border-forge-200 text-forge-900 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm"
-                  />
-                  {errors.name && <p className="text-xs text-red-600 mt-1">{errors.name}</p>}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-forge-800 mb-1">Email</label>
-                  <input
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg border border-forge-200 text-forge-900 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm"
-                  />
-                  {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email}</p>}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-forge-800 mb-1">Subject</label>
-                  <select
-                    value={form.subject}
-                    onChange={(e) => setForm((f) => ({ ...f, subject: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg border border-forge-200 text-forge-900 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm"
-                  >
-                    <option value="">Select a subject...</option>
-                    <option>Table Reservation</option>
-                    <option>Event Inquiry</option>
-                    <option>Product Question</option>
-                    <option>Feedback</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-forge-800 mb-1">Message</label>
-                  <textarea
-                    rows={5}
-                    value={form.message}
-                    onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg border border-forge-200 text-forge-900 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm resize-none"
-                  />
-                  {errors.message && <p className="text-xs text-red-600 mt-1">{errors.message}</p>}
-                </div>
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="inline-flex items-center gap-2 bg-ember-600 hover:bg-ember-500 text-white font-medium px-6 py-2.5 rounded transition-colors disabled:opacity-60"
+          <div className="grid lg:grid-cols-5 gap-12">
+            {/* Form */}
+            <div className="lg:col-span-3">
+              <ScrollReveal>
+                <form
+                  onSubmit={handleSubmit}
+                  className="bg-forge-900/60 border border-forge-800 rounded-2xl p-8 space-y-5"
                 >
-                  {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
-                  {status === 'loading' ? 'Sending...' : 'Send Message'}
-                </button>
-                {status === 'error' && (
-                  <p className="text-sm text-red-600">Something went wrong. Please try again.</p>
-                )}
-              </form>
-            </ScrollReveal>
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm font-medium text-forge-300 mb-1.5">Name</label>
+                      <input
+                        type="text"
+                        value={form.name}
+                        onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-lg bg-forge-950 border border-forge-700 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
+                        placeholder="Your name"
+                      />
+                      {errors.name && <p className="text-xs text-red-500 mt-1.5">{errors.name}</p>}
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-forge-300 mb-1.5">Email</label>
+                      <input
+                        type="email"
+                        value={form.email}
+                        onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-lg bg-forge-950 border border-forge-700 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
+                        placeholder="you@email.com"
+                      />
+                      {errors.email && <p className="text-xs text-red-500 mt-1.5">{errors.email}</p>}
+                    </div>
+                  </div>
 
-            <ScrollReveal direction="left">
-              <div className="space-y-6">
-                <div className="bg-white border border-forge-200 rounded-xl p-6">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="w-10 h-10 bg-forge-100 rounded-lg flex items-center justify-center text-ember-600 shrink-0">
-                      <MapPin className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="font-medium text-forge-900">Address</div>
-                      <div className="text-sm text-forge-600">{storeInfo.address}</div>
-                    </div>
+                  <div>
+                    <label className="block text-sm font-medium text-forge-300 mb-1.5">Subject</label>
+                    <select
+                      value={form.subject}
+                      onChange={(e) => setForm((f) => ({ ...f, subject: e.target.value }))}
+                      className="w-full px-4 py-2.5 rounded-lg bg-forge-950 border border-forge-700 text-forge-100 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
+                    >
+                      <option value="">Select a subject...</option>
+                      <option>Table Reservation</option>
+                      <option>Event Inquiry</option>
+                      <option>Product Question</option>
+                      <option>Feedback</option>
+                      <option>Other</option>
+                    </select>
                   </div>
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="w-10 h-10 bg-forge-100 rounded-lg flex items-center justify-center text-ember-600 shrink-0">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="font-medium text-forge-900">Phone</div>
-                      <div className="text-sm text-forge-600">{storeInfo.phone}</div>
-                    </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-forge-300 mb-1.5">Message</label>
+                    <textarea
+                      rows={5}
+                      value={form.message}
+                      onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+                      className="w-full px-4 py-2.5 rounded-lg bg-forge-950 border border-forge-700 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm resize-none transition-all"
+                      placeholder="How can we help?"
+                    />
+                    {errors.message && <p className="text-xs text-red-500 mt-1.5">{errors.message}</p>}
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-forge-100 rounded-lg flex items-center justify-center text-ember-600 shrink-0">
-                      <Mail className="w-5 h-5" />
+
+                  <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="inline-flex items-center gap-2 bg-ember-600 hover:bg-ember-500 text-white font-medium px-6 py-2.5 rounded-lg transition-all disabled:opacity-60 shadow-lg shadow-ember-600/20"
+                  >
+                    {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
+                    <Send className="w-4 h-4" />
+                    {status === 'loading' ? 'Sending...' : 'Send Message'}
+                  </button>
+
+                  {status === 'error' && (
+                    <p className="text-sm text-red-500">Something went wrong. Please try again.</p>
+                  )}
+                </form>
+              </ScrollReveal>
+            </div>
+
+            {/* Sidebar info */}
+            <div className="lg:col-span-2 space-y-6">
+              <ScrollReveal direction="left">
+                <div className="bg-forge-900/60 border border-forge-800 rounded-2xl overflow-hidden"
+                >
+                  <div className="relative h-48"
+                  >
+                    <img
+                      src={visitImage}
+                      alt="The Forge storefront"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-forge-950 via-forge-950/40 to-transparent" />
+                  </div>
+                  <div className="p-6 space-y-5">
+                    <div className="flex items-start gap-3">
+                      <div className="w-9 h-9 bg-ember-500/10 rounded-lg flex items-center justify-center text-ember-500 shrink-0"
+                      >
+                        <MapPin className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium text-forge-100">{storeInfo.name}</div>
+                        <div className="text-sm text-forge-400">{storeInfo.address}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="font-medium text-forge-900">Email</div>
-                      <div className="text-sm text-forge-600">{storeInfo.email}</div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-9 h-9 bg-ember-500/10 rounded-lg flex items-center justify-center text-ember-500 shrink-0"
+                      >
+                        <Phone className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium text-forge-100">Phone</div>
+                        <div className="text-sm text-forge-400">{storeInfo.phone}</div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-9 h-9 bg-ember-500/10 rounded-lg flex items-center justify-center text-ember-500 shrink-0"
+                      >
+                        <Mail className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium text-forge-100">Email</div>
+                        <div className="text-sm text-forge-400">{storeInfo.email}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
+              </ScrollReveal>
 
-                <div className="bg-white border border-forge-200 rounded-xl p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Clock className="w-5 h-5 text-ember-600" />
-                    <div className="font-medium text-forge-900">Store Hours</div>
+              <ScrollReveal direction="left" delay={0.1}>
+                <div className="bg-forge-900/60 border border-forge-800 rounded-2xl p-6"
+                >
+                  <div className="flex items-center gap-3 mb-5">
+                    <Clock className="w-5 h-5 text-ember-500" />
+                    <div className="font-medium text-forge-100">Store Hours</div>
                   </div>
-                  <div className="text-sm text-forge-600 space-y-1">
-                    <div className="flex justify-between">
+                  <div className="text-sm text-forge-400 space-y-2.5">
+                    <div className="flex justify-between items-center py-1 border-b border-forge-800/50">
                       <span>Mon – Thu</span>
-                      <span>{storeInfo.hours.monThu}</span>
+                      <span className="text-forge-300 font-medium">{storeInfo.hours.monThu}</span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center py-1 border-b border-forge-800/50">
                       <span>Friday</span>
-                      <span>{storeInfo.hours.fri}</span>
+                      <span className="text-forge-300 font-medium">{storeInfo.hours.fri}</span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center py-1 border-b border-forge-800/50">
                       <span>Saturday</span>
-                      <span>{storeInfo.hours.sat}</span>
+                      <span className="text-forge-300 font-medium">{storeInfo.hours.sat}</span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center py-1">
                       <span>Sunday</span>
-                      <span>{storeInfo.hours.sun}</span>
+                      <span className="text-forge-300 font-medium">{storeInfo.hours.sun}</span>
                     </div>
                   </div>
                 </div>
-
-                <div className="bg-forge-800 rounded-xl p-6 text-center">
-                  <p className="text-sm text-forge-300 mb-2">Map area placeholder</p>
-                  <div className="h-40 bg-forge-900 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-8 h-8 text-forge-600" />
-                  </div>
-                  <p className="text-xs text-forge-500 mt-2">Google Maps embed will go here</p>
-                </div>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </div>

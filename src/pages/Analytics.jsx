@@ -10,12 +10,12 @@ import { formatDuration } from '../lib/utils'
 
 function StatCard({ label, value, icon: Icon }) {
   return (
-    <div className="bg-white border border-forge-200 rounded-xl p-6 flex items-center gap-4">
-      <div className="w-10 h-10 bg-ember-50 rounded-lg flex items-center justify-center text-ember-600">
+    <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6 flex items-center gap-4 card-hover">
+      <div className="w-10 h-10 bg-ember-500/10 rounded-lg flex items-center justify-center text-ember-500">
         <Icon className="w-5 h-5" />
       </div>
       <div>
-        <div className="text-2xl font-semibold text-forge-900">{value}</div>
+        <div className="text-2xl font-semibold text-forge-100">{value}</div>
         <div className="text-xs text-forge-500 uppercase tracking-wide">{label}</div>
       </div>
     </div>
@@ -26,13 +26,13 @@ function BarRow({ label, value, max }) {
   const pct = max ? Math.round((value / max) * 100) : 0
   return (
     <div className="mb-3">
-      <div className="flex items-center justify-between text-sm mb-1">
-        <span className="text-forge-700">{label}</span>
-        <span className="text-forge-900 font-medium">{value.toLocaleString()}</span>
+      <div className="flex items-center justify-between text-sm mb-1.5">
+        <span className="text-forge-300">{label}</span>
+        <span className="text-forge-100 font-medium">{value.toLocaleString()}</span>
       </div>
-      <div className="w-full h-2 bg-forge-100 rounded-full overflow-hidden">
+      <div className="w-full h-2 bg-forge-800 rounded-full overflow-hidden">
         <div
-          className="h-full bg-ember-500 rounded-full transition-all duration-500"
+          className="h-full bg-gradient-to-r from-ember-600 to-ember-500 rounded-full transition-all duration-700"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -79,33 +79,32 @@ export function AnalyticsPage() {
         <meta name="robots" content="noindex" />
       </Helmet>
 
-      <div className="pt-28 pb-16 px-6">
+      <div className="pt-28 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <SectionHeader
               number="Stats"
               title="Engagement Analytics"
               subtitle="Real-time client-side tracking. Data persists in localStorage for this session."
-              light
             />
             <div className="flex items-center gap-3">
               <button
                 onClick={refresh}
-                className="inline-flex items-center gap-2 bg-white border border-forge-200 hover:border-forge-400 text-forge-700 text-sm font-medium px-4 py-2 rounded transition-colors"
+                className="inline-flex items-center gap-2 bg-forge-900/60 border border-forge-800 hover:border-forge-600 text-forge-300 text-sm font-medium px-4 py-2 rounded-lg transition-all"
               >
                 <RefreshCw className="w-4 h-4" />
                 Refresh
               </button>
               <button
                 onClick={() => exportAnalyticsJSON()}
-                className="inline-flex items-center gap-2 bg-forge-800 hover:bg-forge-700 text-forge-50 text-sm font-medium px-4 py-2 rounded transition-colors"
+                className="inline-flex items-center gap-2 bg-forge-800 hover:bg-forge-700 text-forge-100 text-sm font-medium px-4 py-2 rounded-lg transition-all border border-forge-700 hover:border-forge-600"
               >
                 <Download className="w-4 h-4" />
                 Export JSON
               </button>
               <button
                 onClick={handleClear}
-                className="inline-flex items-center gap-2 bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 text-sm font-medium px-4 py-2 rounded transition-colors"
+                className="inline-flex items-center gap-2 bg-red-500/10 hover:bg-red-500/15 border border-red-500/20 text-red-400 text-sm font-medium px-4 py-2 rounded-lg transition-all"
               >
                 <Trash2 className="w-4 h-4" />
                 Clear
@@ -114,7 +113,7 @@ export function AnalyticsPage() {
           </div>
 
           {cleared && (
-            <div className="mb-6 text-sm text-emerald-700 bg-emerald-50 px-4 py-2 rounded-lg">
+            <div className="mb-6 text-sm text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-lg">
               Analytics data cleared.
             </div>
           )}
@@ -136,8 +135,8 @@ export function AnalyticsPage() {
 
           <div className="grid md:grid-cols-2 gap-6 mb-10">
             <ScrollReveal>
-              <div className="bg-white border border-forge-200 rounded-xl p-6">
-                <h3 className="font-serif text-lg font-semibold text-forge-900 mb-4">Top Pages</h3>
+              <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
+                <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">Top Pages</h3>
                 {stats.topPages.length === 0 && (
                   <p className="text-sm text-forge-500">No data yet. Browse the site to populate.</p>
                 )}
@@ -148,8 +147,8 @@ export function AnalyticsPage() {
             </ScrollReveal>
 
             <ScrollReveal>
-              <div className="bg-white border border-forge-200 rounded-xl p-6">
-                <h3 className="font-serif text-lg font-semibold text-forge-900 mb-4">Top Clicks</h3>
+              <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
+                <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">Top Clicks</h3>
                 {stats.topClicks.length === 0 && (
                   <p className="text-sm text-forge-500">No data yet. Click around to populate.</p>
                 )}
@@ -162,8 +161,8 @@ export function AnalyticsPage() {
 
           <div className="grid md:grid-cols-2 gap-6 mb-10">
             <ScrollReveal>
-              <div className="bg-white border border-forge-200 rounded-xl p-6">
-                <h3 className="font-serif text-lg font-semibold text-forge-900 mb-4">Scroll Depth</h3>
+              <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
+                <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">Scroll Depth</h3>
                 {scrollEntries.length === 0 && (
                   <p className="text-sm text-forge-500">Scroll the site to track depth milestones.</p>
                 )}
@@ -174,15 +173,15 @@ export function AnalyticsPage() {
             </ScrollReveal>
 
             <ScrollReveal>
-              <div className="bg-white border border-forge-200 rounded-xl p-6">
-                <h3 className="font-serif text-lg font-semibold text-forge-900 mb-4">Conversions</h3>
+              <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
+                <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">Conversions</h3>
                 {stats.topConversions.length === 0 && (
                   <p className="text-sm text-forge-500">No conversions yet. Click CTAs to log them.</p>
                 )}
                 {stats.topConversions.map(([name, count]) => (
-                  <div key={name} className="flex items-center justify-between py-2 border-b border-forge-100 last:border-0">
-                    <span className="text-sm text-forge-700">{name}</span>
-                    <span className="text-sm font-medium text-forge-900">{count}</span>
+                  <div key={name} className="flex items-center justify-between py-2.5 border-b border-forge-800/50 last:border-0">
+                    <span className="text-sm text-forge-300">{name}</span>
+                    <span className="text-sm font-medium text-forge-100">{count}</span>
                   </div>
                 ))}
               </div>
@@ -190,8 +189,8 @@ export function AnalyticsPage() {
           </div>
 
           <ScrollReveal>
-            <div className="bg-white border border-forge-200 rounded-xl p-6">
-              <h3 className="font-serif text-lg font-semibold text-forge-900 mb-4">A/B Test Results</h3>
+            <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
+              <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">A/B Test Results</h3>
               {abEntries.length === 0 && (
                 <p className="text-sm text-forge-500">No active tests. Tests run automatically on Home.</p>
               )}
@@ -201,23 +200,23 @@ export function AnalyticsPage() {
                   const conversions = data.conversions || 0
                   const rate = impressions > 0 ? ((conversions / impressions) * 100).toFixed(1) : '0.0'
                   return (
-                    <div key={testName} className="border border-forge-100 rounded-lg p-4">
+                    <div key={testName} className="border border-forge-800 rounded-lg p-4">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-medium text-forge-900">{testName}</span>
+                        <span className="font-medium text-forge-100">{testName}</span>
                         <span className="text-xs text-forge-500">Variant: {data.variant}</span>
                       </div>
                       <div className="grid grid-cols-3 gap-4 text-sm">
                         <div>
                           <div className="text-forge-500 text-xs">Impressions</div>
-                          <div className="font-medium text-forge-900">{impressions}</div>
+                          <div className="font-medium text-forge-100">{impressions}</div>
                         </div>
                         <div>
                           <div className="text-forge-500 text-xs">Conversions</div>
-                          <div className="font-medium text-forge-900">{conversions}</div>
+                          <div className="font-medium text-forge-100">{conversions}</div>
                         </div>
                         <div>
                           <div className="text-forge-500 text-xs">Conversion Rate</div>
-                          <div className="font-medium text-ember-600">{rate}%</div>
+                          <div className="font-medium text-ember-500">{rate}%</div>
                         </div>
                       </div>
                     </div>

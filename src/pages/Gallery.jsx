@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Image } from 'lucide-react'
 import { ScrollReveal } from '../components/ui/ScrollReveal'
 import { SectionHeader } from '../components/ui/SectionHeader'
 import { Lightbox } from '../components/ui/Lightbox'
@@ -14,10 +13,10 @@ const aspectClasses = {
 }
 
 const categoryColors = {
-  Store: 'bg-forge-800',
-  Events: 'bg-ember-900',
-  Miniatures: 'bg-forge-900',
-  Community: 'bg-forge-800',
+  Store: 'bg-ember-600',
+  Events: 'bg-forge-700',
+  Miniatures: 'bg-forge-800',
+  Community: 'bg-ember-700',
 }
 
 export function Gallery() {
@@ -52,24 +51,23 @@ export function Gallery() {
         />
       </Helmet>
 
-      <div className="pt-28 pb-16 px-6">
+      <div className="pt-28 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
             number="Gallery"
             title="Moments from the Forge."
-            subtitle="Photos from events, painted armies, store life, and community gatherings. Your images will replace these placeholders."
-            light
+            subtitle="Photos from events, painted armies, store life, and community gatherings."
           />
 
-          <div className="flex flex-wrap gap-2 mb-10">
+          <div className="flex flex-wrap gap-2 mb-12">
             {galleryCategories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => { setActiveCategory(cat); setLightboxIndex(null) }}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === cat
-                    ? 'bg-ember-600 text-white'
-                    : 'bg-white text-forge-700 border border-forge-200 hover:border-ember-500/40'
+                    ? 'bg-ember-600 text-white shadow-lg shadow-ember-600/20'
+                    : 'bg-white/5 text-forge-300 border border-forge-700/50 hover:border-ember-500/40 hover:text-forge-100'
                 }`}
               >
                 {cat}
@@ -81,24 +79,36 @@ export function Gallery() {
             {filtered.map((photo, i) => (
               <ScrollReveal key={photo.id} delay={i * 0.05}>
                 <div
-                  className="break-inside-avoid bg-white border border-forge-200 rounded-xl overflow-hidden group hover:border-ember-500/30 transition-colors cursor-pointer"
+                  className="break-inside-avoid bg-forge-900 border border-forge-800 rounded-xl overflow-hidden group cursor-pointer card-hover hover:border-ember-500/30"
                   onClick={() => openLightbox(i)}
                 >
                   <div
-                    className={`relative ${aspectClasses[photo.aspect]} ${
-                      categoryColors[photo.category] || 'bg-forge-900'
-                    } flex items-center justify-center`}
+                    className={`relative ${aspectClasses[photo.aspect]} overflow-hidden`}
                   >
-                    <Image className="w-10 h-10 text-forge-400/40" />
-                    <div className="absolute bottom-3 left-3">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-white/80 bg-black/30 px-2 py-1 rounded">
+                    {photo.src ? (
+                      <img
+                        src={photo.src}
+                        alt={photo.title}
+                        className="w-full h-full object-cover image-zoom"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-forge-800 flex items-center justify-center">
+                        <span className="text-forge-500 text-sm">{photo.title}</span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-forge-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-3 left-3"
+                    >
+                      <span className={`text-[10px] font-bold uppercase tracking-wider text-white/90 px-2.5 py-1 rounded-full ${categoryColors[photo.category] || 'bg-forge-800'}`}>
                         {photo.category}
                       </span>
                     </div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-medium text-forge-900 text-sm">{photo.title}</h3>
-                    <p className="text-xs text-forge-500 mt-1">Placeholder — photo coming soon</p>
+                  <div className="p-4"
+                  >
+                    <h3 className="font-medium text-forge-100 text-sm group-hover:text-ember-400 transition-colors"
+                    >{photo.title}</h3>
                   </div>
                 </div>
               </ScrollReveal>

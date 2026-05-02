@@ -45,13 +45,13 @@ export function GamesGrid() {
 
         <div className="mb-10">
           <div className="relative max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-forge-500" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-forge-500" />
             <input
               type="text"
               placeholder="Search games..."
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-white border border-forge-200 text-forge-900 placeholder:text-forge-400 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm"
+              className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
             />
           </div>
         </div>
@@ -59,35 +59,35 @@ export function GamesGrid() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((cat) => (
             <ScrollReveal key={cat.id}>
-              <div className="group relative bg-white border border-forge-200 hover:border-ember-500/40 rounded-xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-ember-900/10">
+              <div className="group relative bg-forge-900/60 border border-forge-800 hover:border-ember-500/30 rounded-xl p-7 transition-all duration-300 card-hover h-full flex flex-col">
                 <div className="flex items-start justify-between mb-5">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-forge-100 rounded-lg flex items-center justify-center text-ember-600">
+                    <div className="w-10 h-10 bg-ember-500/10 rounded-lg flex items-center justify-center text-ember-500 group-hover:bg-ember-500/20 transition-colors">
                       <cat.Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="font-serif text-lg font-semibold text-forge-900">
+                      <h3 className="font-serif text-lg font-semibold text-forge-100">
                         {cat.title}
                       </h3>
-                      <p className="text-xs text-ember-600 font-medium tracking-wide uppercase">
+                      <p className="text-xs text-ember-500 font-medium tracking-wide uppercase">
                         {cat.tagline}
                       </p>
                     </div>
                   </div>
-                  <span className="text-forge-300 text-xs font-mono">{cat.id}</span>
+                  <span className="text-forge-600 text-xs font-mono">{cat.id}</span>
                 </div>
-                <p className="text-sm text-forge-600 leading-relaxed mb-5">
+                <p className="text-sm text-forge-400 leading-relaxed mb-5">
                   {cat.description}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-3 flex-1">
                   {cat.items.map((item) => (
                     <li
                       key={item.name}
-                      className="flex items-start gap-2 text-sm text-forge-700 group/item"
+                      className="flex items-start gap-2 text-sm text-forge-300 group/item"
                     >
                       <ChevronRight className="w-3.5 h-3.5 text-ember-500 mt-0.5 shrink-0" />
                       <div className="flex-1" onClick={() => trackGameClick({ game: item.name, category: cat.title })}>
-                        <span className="font-medium text-forge-800">{item.name}</span>
+                        <span className="font-medium text-forge-200">{item.name}</span>
                         <span className="text-forge-500 ml-1.5">— {item.detail}</span>
                       </div>
                       <button
@@ -95,7 +95,7 @@ export function GamesGrid() {
                         className={`shrink-0 transition-colors ${
                           wishlist.includes(item.name)
                             ? 'text-ember-500'
-                            : 'text-forge-300 hover:text-ember-500 opacity-0 group-hover/item:opacity-100'
+                            : 'text-forge-600 hover:text-ember-500 opacity-0 group-hover/item:opacity-100'
                         }`}
                         aria-label={wishlist.includes(item.name) ? 'Remove from wishlist' : 'Add to wishlist'}
                       >

@@ -116,7 +116,7 @@ export const highlights = [
 
 export const storeInfo = {
   name: 'The Forge Hobbies & Games',
-  address: '14520 Memorial Dr, Houston, TX 77079',
+  address: '15121 Memorial Dr, Houston, TX 77079',
   phone: '(832) 544-1786',
   email: 'hello@theforgehobbyshop.com',
   hours: {
@@ -134,19 +134,25 @@ export const teamMembers = [
   { name: 'Riley Ortiz', role: 'Community Manager', bio: 'Runs our Discord, events calendar, and social presence. The reason our community feels like family instead of a customer list.' },
 ]
 
+export const heroImage = '/photos/forge-01.png'
+
+export const aboutImage = '/photos/forge-11.png'
+
+export const visitImage = '/photos/forge-12.png'
+
 export const galleryCategories = ['All', 'Store', 'Events', 'Miniatures', 'Community']
 
 export const galleryPhotos = [
-  { id: 1, category: 'Store', title: 'The Main Floor', aspect: 'landscape' },
-  { id: 2, category: 'Store', title: 'Paint Station', aspect: 'portrait' },
-  { id: 3, category: 'Events', title: 'Friday Night Magic', aspect: 'landscape' },
-  { id: 4, category: 'Events', title: '40K Tournament', aspect: 'landscape' },
-  { id: 5, category: 'Miniatures', title: 'Painted Knight', aspect: 'portrait' },
-  { id: 6, category: 'Miniatures', title: 'Terrain Build', aspect: 'landscape' },
-  { id: 7, category: 'Community', title: 'Learn-to-Play Night', aspect: 'landscape' },
-  { id: 8, category: 'Community', title: 'Sunday Paint Club', aspect: 'square' },
-  { id: 9, category: 'Store', title: 'RPG Room A', aspect: 'landscape' },
-  { id: 10, category: 'Store', title: 'Demo Library Shelves', aspect: 'portrait' },
-  { id: 11, category: 'Events', title: 'Board Game Marathon', aspect: 'landscape' },
-  { id: 12, category: 'Miniatures', title: 'Army Showcase', aspect: 'landscape' },
+  { id: 1, category: 'Store', title: 'The Main Floor', aspect: 'landscape', src: '/photos/forge-02.png' },
+  { id: 2, category: 'Store', title: 'Paint Station', aspect: 'portrait', src: '/photos/forge-03.png' },
+  { id: 3, category: 'Events', title: 'Friday Night Magic', aspect: 'landscape', src: '/photos/forge-04.png' },
+  { id: 4, category: 'Events', title: '40K Tournament', aspect: 'landscape', src: '/photos/forge-05.png' },
+  { id: 5, category: 'Miniatures', title: 'Painted Knight', aspect: 'portrait', src: '/photos/forge-06.png' },
+  { id: 6, category: 'Miniatures', title: 'Terrain Build', aspect: 'landscape', src: '/photos/forge-07.png' },
+  { id: 7, category: 'Community', title: 'Learn-to-Play Night', aspect: 'landscape', src: '/photos/forge-08.png' },
+  { id: 8, category: 'Community', title: 'Sunday Paint Club', aspect: 'square', src: '/photos/forge-09.png' },
+  { id: 9, category: 'Store', title: 'RPG Room A', aspect: 'landscape', src: '/photos/forge-10.png' },
+  { id: 10, category: 'Store', title: 'The Forge Entrance', aspect: 'portrait', src: '/photos/forge-01.png' },
+  { id: 11, category: 'Events', title: 'Board Game Marathon', aspect: 'landscape', src: '/photos/forge-11.png' },
+  { id: 12, category: 'Miniatures', title: 'Army Showcase', aspect: 'landscape', src: '/photos/forge-12.png' },
 ]

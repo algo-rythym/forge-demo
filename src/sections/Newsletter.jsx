@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Mail, Loader2, CheckCircle } from 'lucide-react'
+import { Mail, Loader2, CheckCircle, ArrowRight, Zap } from 'lucide-react'
 import { ScrollReveal } from '../components/ui/ScrollReveal'
 import { useClickTracker } from '../hooks/useAnalytics'
 import { useToast } from '../context/ToastContext'
@@ -29,24 +29,33 @@ export function Newsletter() {
     <section className="py-24 md:py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal>
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-forge-900 to-forge-800 border border-forge-700/50 p-10 md:p-14 text-center">
-            <div className="absolute top-0 right-0 w-64 h-64 opacity-10">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-forge-900 via-forge-950 to-forge-900 border border-forge-800 p-10 md:p-14">
+            <div className="absolute top-0 right-0 w-96 h-96 opacity-20">
               <div
-                className="w-full h-full rounded-full"
+                className="w-full h-full rounded-full animate-pulse-glow"
                 style={{
-                  background: 'radial-gradient(circle, rgba(249,115,22,0.5) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(217,119,6,0.4) 0%, transparent 70%)',
+                }}
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 opacity-10">
+              <div
+                className="w-full h-full rounded-full animate-pulse-glow"
+                style={{
+                  background: 'radial-gradient(circle, rgba(217,119,6,0.3) 0%, transparent 70%)',
+                  animationDelay: '2s',
                 }}
               />
             </div>
 
-            <div className="relative max-w-xl mx-auto">
-              <div className="w-12 h-12 bg-ember-500/20 rounded-xl flex items-center justify-center mx-auto mb-5">
-                <Mail className="w-6 h-6 text-ember-500" />
+            <div className="relative max-w-xl mx-auto text-center">
+              <div className="w-14 h-14 bg-ember-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Mail className="w-7 h-7 text-ember-500" />
               </div>
               <h2 className="font-serif text-3xl md:text-4xl font-semibold text-forge-50 mb-3">
                 Stay in the loop.
               </h2>
-              <p className="text-forge-300 mb-8">
+              <p className="text-forge-400 mb-8">
                 Get weekly event reminders, restock alerts, and exclusive member
                 offers. No spam — just the games you care about.
               </p>
@@ -57,12 +66,12 @@ export function Newsletter() {
                   placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-3 rounded-lg bg-forge-950 border border-forge-700 text-forge-100 placeholder:text-forge-500 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm"
+                  className="flex-1 px-4 py-3 rounded-lg bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
                 />
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="inline-flex items-center justify-center gap-2 bg-ember-600 hover:bg-ember-500 text-white font-medium px-6 py-3 rounded-lg transition-colors disabled:opacity-60 text-sm"
+                  className="group inline-flex items-center justify-center gap-2 bg-ember-600 hover:bg-ember-500 text-white font-medium px-6 py-3 rounded-lg transition-all disabled:opacity-60 text-sm shadow-lg shadow-ember-600/20 hover:shadow-ember-600/30"
                 >
                   {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
                   {status === 'success' ? (
@@ -71,14 +80,20 @@ export function Newsletter() {
                       Subscribed
                     </>
                   ) : (
-                    'Subscribe'
+                    <>
+                      Subscribe
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                    </>
                   )}
                 </button>
               </form>
 
-              <p className="text-xs text-forge-500 mt-4">
-                Join 1,200+ subscribers. Unsubscribe anytime.
-              </p>
+              <div className="flex items-center justify-center gap-2 mt-4">
+                <Zap className="w-3.5 h-3.5 text-ember-500" />
+                <p className="text-xs text-forge-500">
+                  Join 1,200+ subscribers. Unsubscribe anytime.
+                </p>
+              </div>
             </div>
           </div>
         </ScrollReveal>

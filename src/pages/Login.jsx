@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
-import { Flame, Loader2 } from 'lucide-react'
+import { Flame, Loader2, ArrowRight, Shield } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import { ScrollReveal } from '../components/ui/ScrollReveal'
 import { usePageAnalytics } from '../hooks/useAnalytics'
@@ -64,15 +64,15 @@ export function Login() {
       </Helmet>
       <div className="pt-28 pb-16 px-6 min-h-[70vh] flex items-center justify-center">
         <ScrollReveal className="w-full max-w-sm">
-          <div className="bg-white border border-forge-200 rounded-xl p-8">
+          <div className="bg-forge-900/60 border border-forge-800 rounded-2xl p-8">
             <div className="text-center mb-6">
-              <div className="w-10 h-10 bg-ember-500 rounded-sm flex items-center justify-center mx-auto mb-3">
-                <Flame className="w-5 h-5 text-white" />
+              <div className="w-12 h-12 bg-ember-500/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Flame className="w-6 h-6 text-ember-500" />
               </div>
-              <h1 className="font-serif text-xl font-semibold text-forge-900">
+              <h1 className="font-serif text-xl font-semibold text-forge-100">
                 {mode === 'login' ? 'Welcome back' : 'Join the Forge'}
               </h1>
-              <p className="text-sm text-forge-500 mt-1">
+              <p className="text-sm text-forge-400 mt-1">
                 {mode === 'login'
                   ? 'Log in to your account'
                   : 'Create a free account'}
@@ -83,61 +83,62 @@ export function Login() {
               {mode === 'register' && (
                 <>
                   <div>
-                    <label className="block text-sm font-medium text-forge-800 mb-1">Name</label>
+                    <label className="block text-sm font-medium text-forge-300 mb-1">Name</label>
                     <input
                       name="name"
                       type="text"
                       value={form.name}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 rounded-lg border border-forge-200 text-forge-900 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-forge-800 mb-1">Handle</label>
+                    <label className="block text-sm font-medium text-forge-300 mb-1">Handle</label>
                     <input
                       name="handle"
                       type="text"
                       value={form.handle}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 rounded-lg border border-forge-200 text-forge-900 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
                       required
                     />
                   </div>
                 </>
               )}
               <div>
-                <label className="block text-sm font-medium text-forge-800 mb-1">Email</label>
+                <label className="block text-sm font-medium text-forge-300 mb-1">Email</label>
                 <input
                   name="email"
                   type="email"
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 rounded-lg border border-forge-200 text-forge-900 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-forge-800 mb-1">Password</label>
+                <label className="block text-sm font-medium text-forge-300 mb-1">Password</label>
                 <input
                   name="password"
                   type="password"
                   value={form.password}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 rounded-lg border border-forge-200 text-forge-900 focus:outline-none focus:ring-2 focus:ring-ember-500/40 text-sm"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
                   required
                 />
               </div>
 
-              {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded">{error}</p>}
+              {error && <p className="text-sm text-red-500 bg-red-500/10 px-3 py-2 rounded-lg">{error}</p>}
 
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full inline-flex items-center justify-center gap-2 bg-ember-600 hover:bg-ember-500 text-white font-medium px-4 py-2.5 rounded transition-colors disabled:opacity-60"
+                className="w-full group inline-flex items-center justify-center gap-2 bg-ember-600 hover:bg-ember-500 text-white font-medium px-4 py-2.5 rounded-lg transition-all disabled:opacity-60 shadow-lg shadow-ember-600/20"
               >
                 {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
                 {mode === 'login' ? 'Log In' : 'Create Account'}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
               </button>
             </form>
 
@@ -147,7 +148,7 @@ export function Login() {
                   No account?{' '}
                   <button
                     onClick={() => { setMode('register'); setError('') }}
-                    className="text-ember-600 hover:text-ember-500 font-medium"
+                    className="text-ember-500 hover:text-ember-400 font-medium transition-colors"
                   >
                     Sign up
                   </button>
@@ -157,7 +158,7 @@ export function Login() {
                   Already have an account?{' '}
                   <button
                     onClick={() => { setMode('login'); setError('') }}
-                    className="text-ember-600 hover:text-ember-500 font-medium"
+                    className="text-ember-500 hover:text-ember-400 font-medium transition-colors"
                   >
                     Log in
                   </button>
@@ -165,9 +166,10 @@ export function Login() {
               )}
             </div>
 
-            <p className="mt-4 text-xs text-forge-400 text-center">
-              Demo system. Passwords are not encrypted.
-            </p>
+            <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-forge-600">
+              <Shield className="w-3 h-3" />
+              <span>Demo system. Passwords are not encrypted.</span>
+            </div>
           </div>
         </ScrollReveal>
       </div>

@@ -4,6 +4,7 @@ import { Highlights } from '../sections/Highlights'
 import { TrustBand } from '../sections/TrustBand'
 import { GamesGrid } from '../sections/GamesGrid'
 import { EventsCalendar } from '../sections/EventsCalendar'
+import { PhotoStrip } from '../sections/PhotoStrip'
 import { Community } from '../sections/Community'
 import { VisitCTA } from '../sections/VisitCTA'
 import { Newsletter } from '../sections/Newsletter'
@@ -27,6 +28,7 @@ export function Home() {
       <TrustBand />
       <GamesGrid />
       <EventsCalendar />
+      <PhotoStrip />
       <Community />
       <VisitCTA />
       <Newsletter />

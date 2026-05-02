@@ -21,23 +21,23 @@ export function Lightbox({ photos, currentIndex, onClose, onNavigate }) {
 
   return (
     <div
-      className="fixed inset-0 z-[90] bg-black/90 flex items-center justify-center p-4"
+      className="fixed inset-0 z-[90] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
       onClick={onClose}
     >
       <button
         onClick={(e) => { e.stopPropagation(); onNavigate(-1) }}
         disabled={currentIndex === 0}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white disabled:opacity-30 transition-colors"
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white disabled:opacity-20 transition-all"
       >
-        <ChevronLeft className="w-8 h-8" />
+        <ChevronLeft className="w-6 h-6" />
       </button>
 
       <div
-        className="relative max-w-4xl max-h-[80vh] w-full flex flex-col items-center"
+        className="relative max-w-5xl max-h-[85vh] w-full flex flex-col items-center"
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className={`w-full bg-forge-800 flex items-center justify-center ${
+          className={`w-full overflow-hidden rounded-xl ${
             photo.aspect === 'portrait'
               ? 'aspect-[3/4] max-h-[70vh]'
               : photo.aspect === 'square'
@@ -45,11 +45,21 @@ export function Lightbox({ photos, currentIndex, onClose, onNavigate }) {
               : 'aspect-video'
           }`}
         >
-          <span className="text-forge-500 text-lg">{photo.title}</span>
+          {photo.src ? (
+            <img
+              src={photo.src}
+              alt={photo.title}
+              className="w-full h-full object-contain bg-forge-950"
+            />
+          ) : (
+            <div className="w-full h-full bg-forge-800 flex items-center justify-center">
+              <span className="text-forge-500 text-lg">{photo.title}</span>
+            </div>
+          )}
         </div>
-        <div className="mt-3 text-center">
-          <p className="text-white font-medium">{photo.title}</p>
-          <p className="text-white/50 text-sm">
+        <div className="mt-4 text-center">
+          <p className="text-white font-medium text-lg">{photo.title}</p>
+          <p className="text-white/50 text-sm mt-1">
             {currentIndex + 1} / {photos.length} · {photo.category}
           </p>
         </div>
@@ -58,16 +68,16 @@ export function Lightbox({ photos, currentIndex, onClose, onNavigate }) {
       <button
         onClick={(e) => { e.stopPropagation(); onNavigate(1) }}
         disabled={currentIndex === photos.length - 1}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white disabled:opacity-30 transition-colors"
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white disabled:opacity-20 transition-all"
       >
-        <ChevronRight className="w-8 h-8" />
+        <ChevronRight className="w-6 h-6" />
       </button>
 
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors"
+        className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all"
       >
-        <X className="w-6 h-6" />
+        <X className="w-5 h-5" />
       </button>
     </div>
   )
