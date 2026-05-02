@@ -3,10 +3,10 @@ import { Flame, MapPin, Phone, Mail, ExternalLink } from 'lucide-react'
 import { storeInfo } from '../../data/content'
 
 const quickLinks = [
-  { label: 'Games', href: '/#games' },
-  { label: 'Events', href: '/#events' },
-  { label: 'Community', href: '/#community' },
-  { label: 'Visit', href: '/#visit' },
+  { label: 'Games', to: '/#games' },
+  { label: 'Events', to: '/#events' },
+  { label: 'Community', to: '/#community' },
+  { label: 'Visit', to: '/#visit' },
 ]
 
 const pageLinks = [
@@ -60,12 +60,12 @@ export function Footer() {
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.to}
                     className="text-sm text-forge-500 hover:text-ember-400 transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               {pageLinks.map((link) => (

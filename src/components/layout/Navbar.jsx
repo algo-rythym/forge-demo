@@ -5,12 +5,20 @@ import { cn } from '../../lib/utils'
 import { useClickTracker } from '../../hooks/useAnalytics'
 import { useAuth } from '../../hooks/useAuth'
 
-const navLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Games', href: '/#games' },
-  { label: 'Events', href: '/#events' },
-  { label: 'Community', href: '/#community' },
-  { label: 'Visit', href: '/#visit' },
+const homeLinks = [
+  { label: 'About', to: '/about' },
+  { label: 'Games', to: '/#games' },
+  { label: 'Events', to: '/#events' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'Community', to: '/#community' },
+  { label: 'Visit', to: '/#visit' },
+]
+
+const pageLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export function Navbar() {
@@ -31,6 +39,12 @@ export function Navbar() {
   }, [location])
 
   const isHome = location.pathname === '/'
+  const activeLinks = isHome ? homeLinks : pageLinks
+
+  const isActive = (to) => {
+    if (to.startsWith('/#')) return isHome && location.hash === to.slice(1)
+    return location.pathname === to
+  }
 
   return (
     <header
@@ -55,57 +69,59 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-forge-300">
-          {isHome ? (
-            navLinks.map((link) =>
-              link.href.startsWith('#') || link.href.startsWith('/#') ? (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="relative hover:text-forge-50 transition-colors py-1 group"
-                  onClick={() => trackNavClick({ target: link.label })}
-                >
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ember-500 group-hover:w-full transition-all duration-300" />
-                </a>
-              ) : (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className="relative hover:text-forge-50 transition-colors py-1 group"
-                  onClick={() => trackNavClick({ target: link.label })}
-                >
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ember-500 group-hover:w-full transition-all duration-300" />
-                </Link>
-              )
+        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-forge-300">
+          {activeLinks.map((link) =>
+            link.to.startsWith('/#') ? (
+              <Link
+                key={link.label}
+                to={link.to}
+                className={cn(
+                  'relative transition-colors py-1 group',
+                  isActive(link.to)
+                    ? 'text-forge-50'
+                    : 'text-forge-300 hover:text-forge-50'
+                )}
+                onClick={() => trackNavClick({ target: link.label })}
+              >
+                {link.label}
+                <span
+                  className={cn(
+                    'absolute bottom-0 left-0 h-0.5 bg-ember-500 transition-all duration-300',
+                    isActive(link.to) ? 'w-full' : 'w-0 group-hover:w-full'
+                  )}
+                />
+              </Link>
+            ) : (
+              <Link
+                key={link.label}
+                to={link.to}
+                className={cn(
+                  'relative transition-colors py-1 group',
+                  isActive(link.to)
+                    ? 'text-forge-50'
+                    : 'text-forge-300 hover:text-forge-50'
+                )}
+                onClick={() => trackNavClick({ target: link.label })}
+              >
+                {link.label}
+                <span
+                  className={cn(
+                    'absolute bottom-0 left-0 h-0.5 bg-ember-500 transition-all duration-300',
+                    isActive(link.to) ? 'w-full' : 'w-0 group-hover:w-full'
+                  )}
+                />
+              </Link>
             )
-          ) : (
-            <>
-              <Link to="/" className="relative hover:text-forge-50 transition-colors py-1 group" onClick={() => trackNavClick({ target: 'home' })}>
-                Home
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ember-500 group-hover:w-full transition-all duration-300" />
-              </Link>
-              <Link to="/about" className="relative hover:text-forge-50 transition-colors py-1 group" onClick={() => trackNavClick({ target: 'about' })}>
-                About
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ember-500 group-hover:w-full transition-all duration-300" />
-              </Link>
-              <Link to="/gallery" className="relative hover:text-forge-50 transition-colors py-1 group" onClick={() => trackNavClick({ target: 'gallery' })}>
-                Gallery
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ember-500 group-hover:w-full transition-all duration-300" />
-              </Link>
-              <Link to="/contact" className="relative hover:text-forge-50 transition-colors py-1 group" onClick={() => trackNavClick({ target: 'contact' })}>
-                Contact
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ember-500 group-hover:w-full transition-all duration-300" />
-              </Link>
-            </>
           )}
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
           <Link
             to="/analytics"
-            className="text-xs text-forge-400 hover:text-ember-400 transition-colors font-mono"
+            className={cn(
+              'text-xs hover:text-ember-400 transition-colors font-mono',
+              location.pathname === '/analytics' ? 'text-ember-400' : 'text-forge-400'
+            )}
             onClick={() => trackNavClick({ target: 'analytics' })}
           >
             Stats
@@ -114,7 +130,12 @@ export function Navbar() {
             <div className="flex items-center gap-3">
               <Link
                 to="/profile"
-                className="flex items-center gap-2 text-sm text-forge-200 hover:text-forge-50 transition-colors"
+                className={cn(
+                  'flex items-center gap-2 text-sm transition-colors',
+                  location.pathname === '/profile'
+                    ? 'text-forge-50'
+                    : 'text-forge-200 hover:text-forge-50'
+                )}
                 onClick={() => trackNavClick({ target: 'profile' })}
               >
                 <div className="w-7 h-7 bg-ember-500 rounded-full flex items-center justify-center text-white">
@@ -156,73 +177,110 @@ export function Navbar() {
         >
           <div className="flex flex-col gap-1 text-sm font-medium text-forge-200"
           >
-            {isHome
-              ? navLinks.map((link) =>
-                  link.href.startsWith('#') || link.href.startsWith('/#') ? (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      className="py-2.5 hover:text-forge-50 transition-colors border-b border-forge-800/30 last:border-0"
-                      onClick={() => {
-                        setMenuOpen(false)
-                        trackNavClick({ target: link.label })
-                      }}
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      key={link.label}
-                      to={link.href}
-                      className="py-2.5 hover:text-forge-50 transition-colors border-b border-forge-800/30 last:border-0"
-                      onClick={() => {
-                        setMenuOpen(false)
-                        trackNavClick({ target: link.label })
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  )
-                )
-              : [
-                  { label: 'Home', to: '/' },
-                  { label: 'About', to: '/about' },
-                  { label: 'Gallery', to: '/gallery' },
-                  { label: 'Contact', to: '/contact' },
-                  { label: 'Analytics', to: '/analytics' },
-                  ...(user
-                    ? [
-                        { label: 'Profile', to: '/profile' },
-                        { label: 'Log Out', action: () => logout() },
-                      ]
-                    : [{ label: 'Log In', to: '/login' }]),
-                ].map((link) =>
-                  link.action ? (
-                    <button
-                      key={link.label}
-                      onClick={() => {
-                        setMenuOpen(false)
-                        link.action()
-                        trackNavClick({ target: 'logout' })
-                      }}
-                      className="text-left py-2.5 hover:text-forge-50 transition-colors border-b border-forge-800/30 last:border-0"
-                    >
-                      {link.label}
-                    </button>
-                  ) : (
-                    <Link
-                      key={link.label}
-                      to={link.to}
-                      className="py-2.5 hover:text-forge-50 transition-colors border-b border-forge-800/30 last:border-0"
-                      onClick={() => {
-                        setMenuOpen(false)
-                        trackNavClick({ target: link.label })
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  )
+            {activeLinks.map((link) =>
+              link.to.startsWith('/#') ? (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  className={cn(
+                    'py-2.5 transition-colors border-b border-forge-800/30 last:border-0',
+                    isActive(link.to) ? 'text-ember-400' : 'hover:text-forge-50'
+                  )}
+                  onClick={() => {
+                    setMenuOpen(false)
+                    trackNavClick({ target: link.label })
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  className={cn(
+                    'py-2.5 transition-colors border-b border-forge-800/30 last:border-0',
+                    isActive(link.to) ? 'text-ember-400' : 'hover:text-forge-50'
+                  )}
+                  onClick={() => {
+                    setMenuOpen(false)
+                    trackNavClick({ target: link.label })
+                  }}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+            {isHome && (
+              <>
+                <Link
+                  to="/contact"
+                  className={cn(
+                    'py-2.5 transition-colors border-b border-forge-800/30',
+                    location.pathname === '/contact' ? 'text-ember-400' : 'hover:text-forge-50'
+                  )}
+                  onClick={() => {
+                    setMenuOpen(false)
+                    trackNavClick({ target: 'contact' })
+                  }}
+                >
+                  Contact
+                </Link>
+                <Link
+                  to="/analytics"
+                  className={cn(
+                    'py-2.5 transition-colors border-b border-forge-800/30',
+                    location.pathname === '/analytics' ? 'text-ember-400' : 'hover:text-forge-50'
+                  )}
+                  onClick={() => {
+                    setMenuOpen(false)
+                    trackNavClick({ target: 'analytics' })
+                  }}
+                >
+                  Stats
+                </Link>
+              </>
+            )}
+            {user ? (
+              <>
+                <Link
+                  to="/profile"
+                  className={cn(
+                    'py-2.5 transition-colors border-b border-forge-800/30',
+                    location.pathname === '/profile' ? 'text-ember-400' : 'hover:text-forge-50'
+                  )}
+                  onClick={() => {
+                    setMenuOpen(false)
+                    trackNavClick({ target: 'profile' })
+                  }}
+                >
+                  Profile
+                </Link>
+                <button
+                  onClick={() => {
+                    setMenuOpen(false)
+                    logout()
+                    trackNavClick({ target: 'logout' })
+                  }}
+                  className="text-left py-2.5 hover:text-forge-50 transition-colors"
+                >
+                  Log Out
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                className={cn(
+                  'py-2.5 transition-colors',
+                  location.pathname === '/login' ? 'text-ember-400' : 'hover:text-forge-50'
                 )}
+                onClick={() => {
+                  setMenuOpen(false)
+                  trackNavClick({ target: 'login' })
+                }}
+              >
+                Log In
+              </Link>
+            )}
           </div>
         </div>
       )}
