@@ -46,13 +46,13 @@ export function Hero() {
         <div
           className="absolute -top-32 -right-32 w-[700px] h-[700px] rounded-full animate-pulse-glow"
           style={{
-            background: 'radial-gradient(circle, rgba(212,168,83,0.12) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(212,154,58,0.12) 0%, transparent 70%)',
           }}
         />
         <div
           className="absolute -bottom-32 -left-32 w-[600px] h-[600px] rounded-full animate-pulse-glow"
           style={{
-            background: 'radial-gradient(circle, rgba(212,168,83,0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(212,154,58,0.08) 0%, transparent 70%)',
             animationDelay: '2.5s',
           }}
         />
@@ -115,7 +115,7 @@ export function Hero() {
               onClick={handleExplore}
               className={`group inline-flex items-center gap-2.5 font-medium px-7 py-3.5 rounded-xl transition-all duration-300 text-sm ${
                 ctaVariant === 'primary'
-                  ? 'bg-ember-500 hover:bg-ember-400 text-forge-950 shadow-[0_0_24px_rgba(212,168,83,0.15)] hover:shadow-[0_0_32px_rgba(212,168,83,0.25)]'
+                  ? 'bg-ember-500 hover:bg-ember-400 text-forge-950 shadow-[0_0_24px_rgba(212,154,58,0.15)] hover:shadow-[0_0_32px_rgba(212,154,58,0.25)]'
                   : 'border border-forge-600 hover:border-forge-400 text-forge-200 hover:text-forge-50'
               }`}
             >

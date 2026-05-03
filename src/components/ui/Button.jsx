@@ -10,7 +10,7 @@ export function Button({
 }) {
   const variants = {
     primary:
-      'bg-ember-500 hover:bg-ember-400 text-forge-950 border-transparent shadow-[0_0_20px_rgba(212,168,83,0.12)] hover:shadow-[0_0_28px_rgba(212,168,83,0.2)]',
+      'bg-ember-500 hover:bg-ember-400 text-forge-950 border-transparent shadow-[0_0_20px_rgba(212,154,58,0.12)] hover:shadow-[0_0_28px_rgba(212,154,58,0.2)]',
     secondary:
       'bg-forge-800 hover:bg-forge-700 text-forge-50 border-transparent',
     outline:

@@ -134,7 +134,7 @@ export function Login() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full group inline-flex items-center justify-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-4 py-2.5 rounded-xl transition-all disabled:opacity-60 shadow-[0_0_20px_rgba(212,168,83,0.12)] hover:shadow-[0_0_28px_rgba(212,168,83,0.2)] text-sm"
+                className="w-full group inline-flex items-center justify-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-4 py-2.5 rounded-xl transition-all disabled:opacity-60 shadow-[0_0_20px_rgba(212,154,58,0.12)] hover:shadow-[0_0_28px_rgba(212,154,58,0.2)] text-sm"
               >
                 {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
                 {mode === 'login' ? 'Log In' : 'Create Account'}

@@ -5,29 +5,29 @@
   --font-serif: 'Cinzel', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  --color-forge-50:  #f0ebe3;
-  --color-forge-100: #e8e4dc;
-  --color-forge-200: #d4d0c8;
-  --color-forge-300: #b8b4ad;
-  --color-forge-400: #9e9a94;
-  --color-forge-500: #7a7670;
-  --color-forge-600: #5a5650;
-  --color-forge-700: #3a3834;
-  --color-forge-800: #23232b;
-  --color-forge-900: #16161d;
-  --color-forge-950: #0c0c0f;
+  --color-forge-50:  #f0f2f7;
+  --color-forge-100: #e8eaf0;
+  --color-forge-200: #d4d7e0;
+  --color-forge-300: #b8bcc8;
+  --color-forge-400: #9ea3b0;
+  --color-forge-500: #787d8d;
+  --color-forge-600: #555a6a;
+  --color-forge-700: #363b4d;
+  --color-forge-800: #222737;
+  --color-forge-900: #161a27;
+  --color-forge-950: #0c0f18;
 
-  --color-ember-50:  #fdf8ec;
-  --color-ember-100: #faf1d8;
-  --color-ember-200: #f5e4b8;
-  --color-ember-300: #ecd097;
-  --color-ember-400: #e0bc75;
-  --color-ember-500: #d4a853;
-  --color-ember-600: #b88a3d;
-  --color-ember-700: #996b28;
-  --color-ember-800: #7a5520;
-  --color-ember-900: #5c3f17;
-  --color-ember-950: #3d2a0f;
+  --color-ember-50:  #fdf5e8;
+  --color-ember-100: #faebd0;
+  --color-ember-200: #f5d8a0;
+  --color-ember-300: #ecc075;
+  --color-ember-400: #e0ae55;
+  --color-ember-500: #d49a3a;
+  --color-ember-600: #b88230;
+  --color-ember-700: #996928;
+  --color-ember-800: #7a5020;
+  --color-ember-900: #5c3b17;
+  --color-ember-950: #3d240f;
 }
 
 html {
@@ -38,8 +38,8 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0c0c0f;
-  color: #f0ebe3;
+  background-color: #0c0f18;
+  color: #f0f2f7;
 }
 
 @keyframes float {
@@ -89,7 +89,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #ecd097 0%, #d4a853 40%, #b88a3d 100%);
+  background: linear-gradient(135deg, #ecc075 0%, #d49a3a 40%, #b88230 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -98,14 +98,14 @@ body {
 .bg-hero-gradient {
   background: linear-gradient(
     180deg,
-    rgba(12, 12, 15, 0.25) 0%,
-    rgba(12, 12, 15, 0.55) 50%,
-    rgba(12, 12, 15, 0.92) 100%
+    rgba(12, 15, 24, 0.25) 0%,
+    rgba(12, 15, 24, 0.55) 50%,
+    rgba(12, 15, 24, 0.92) 100%
   );
 }
 
 .bg-glass {
-  background: rgba(22, 22, 29, 0.65);
+  background: rgba(22, 26, 39, 0.65);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -118,7 +118,7 @@ body {
 
 .card-hover:hover {
   transform: translateY(-5px);
-  box-shadow: 0 24px 48px -14px rgba(212, 168, 83, 0.18);
+  box-shadow: 0 24px 48px -14px rgba(212, 154, 58, 0.18);
 }
 
 .image-zoom {

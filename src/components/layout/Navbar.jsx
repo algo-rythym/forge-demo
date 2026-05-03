@@ -62,7 +62,7 @@ export function Navbar() {
           className="flex items-center gap-3 group"
           onClick={() => trackNavClick({ target: 'logo' })}
         >
-          <div className="w-9 h-9 bg-ember-500/15 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-ember-500/25 group-hover:shadow-[0_0_20px_rgba(212,168,83,0.25)]">
+          <div className="w-9 h-9 bg-ember-500/15 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-ember-500/25 group-hover:shadow-[0_0_20px_rgba(212,154,58,0.25)]">
             <Flame className="w-4 h-4 text-ember-500" />
           </div>
           <span className="font-serif text-lg font-semibold tracking-widest text-forge-50 uppercase">
@@ -154,7 +154,7 @@ export function Navbar() {
           ) : (
             <Link
               to="/login"
-              className="group inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 text-xs font-mono font-semibold tracking-wider uppercase px-5 py-2.5 rounded-lg transition-all shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_28px_rgba(212,168,83,0.25)]"
+              className="group inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 text-xs font-mono font-semibold tracking-wider uppercase px-5 py-2.5 rounded-lg transition-all shadow-[0_0_20px_rgba(212,154,58,0.15)] hover:shadow-[0_0_28px_rgba(212,154,58,0.25)]"
               onClick={() => trackNavClick({ target: 'login' })}
             >
               Enter

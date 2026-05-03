@@ -53,7 +53,7 @@ export function VisitCTA() {
             <Link
               to="/contact"
               onClick={() => trackVisitClick({ target: 'contact_page' })}
-              className="group inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-6 py-3 rounded-xl transition-all text-sm shadow-[0_0_20px_rgba(212,168,83,0.12)] hover:shadow-[0_0_28px_rgba(212,168,83,0.2)]"
+              className="group inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-6 py-3 rounded-xl transition-all text-sm shadow-[0_0_20px_rgba(212,154,58,0.12)] hover:shadow-[0_0_28px_rgba(212,154,58,0.2)]"
             >
               Get Directions
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

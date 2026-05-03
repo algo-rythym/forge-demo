@@ -55,7 +55,7 @@ export function About() {
                   className="w-full h-full rounded-full animate-pulse-glow"
                   style={{
                     background:
-                      'radial-gradient(circle, rgba(212,168,83,0.4) 0%, transparent 70%)',
+                      'radial-gradient(circle, rgba(212,154,58,0.4) 0%, transparent 70%)',
                   }}
                 />
               </div>
@@ -147,7 +147,7 @@ export function About() {
                   href="https://maps.google.com/?q=15121+Memorial+Dr+Houston+TX+77079"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-6 py-3 rounded-xl transition-all text-sm shadow-[0_0_20px_rgba(212,168,83,0.12)] hover:shadow-[0_0_28px_rgba(212,168,83,0.2)]"
+                  className="group inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-6 py-3 rounded-xl transition-all text-sm shadow-[0_0_20px_rgba(212,154,58,0.12)] hover:shadow-[0_0_28px_rgba(212,154,58,0.2)]"
                 >
                   Get Directions
                   <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />

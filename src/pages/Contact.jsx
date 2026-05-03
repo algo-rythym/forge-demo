@@ -126,7 +126,7 @@ export function Contact() {
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-6 py-2.5 rounded-xl transition-all disabled:opacity-60 text-sm shadow-[0_0_20px_rgba(212,168,83,0.12)] hover:shadow-[0_0_28px_rgba(212,168,83,0.2)]"
+                    className="inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-6 py-2.5 rounded-xl transition-all disabled:opacity-60 text-sm shadow-[0_0_20px_rgba(212,154,58,0.12)] hover:shadow-[0_0_28px_rgba(212,154,58,0.2)]"
                   >
                     {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
                     <Send className="w-4 h-4" />
