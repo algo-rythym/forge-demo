@@ -26,74 +26,60 @@ export function Newsletter() {
   }
 
   return (
-    <section className="py-24 md:py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-24 md:py-32 px-6 relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(212,168,83,0.06) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="max-w-6xl mx-auto relative">
         <ScrollReveal>
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-forge-900 via-forge-950 to-forge-900 border border-forge-800 p-10 md:p-14">
-            <div className="absolute top-0 right-0 w-96 h-96 opacity-20">
-              <div
-                className="w-full h-full rounded-full animate-pulse-glow"
-                style={{
-                  background: 'radial-gradient(circle, rgba(217,119,6,0.4) 0%, transparent 70%)',
-                }}
-              />
+          <div className="max-w-xl mx-auto text-center">
+            <div className="w-12 h-12 bg-ember-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Mail className="w-5 h-5 text-ember-500" />
             </div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 opacity-10">
-              <div
-                className="w-full h-full rounded-full animate-pulse-glow"
-                style={{
-                  background: 'radial-gradient(circle, rgba(217,119,6,0.3) 0%, transparent 70%)',
-                  animationDelay: '2s',
-                }}
-              />
-            </div>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-forge-50 mb-3">
+              Stay in the loop.
+            </h2>
+            <p className="text-sm text-forge-500 mb-8">
+              Get weekly event reminders, restock alerts, and exclusive member
+              offers. No spam — just the games you care about.
+            </p>
 
-            <div className="relative max-w-xl mx-auto text-center">
-              <div className="w-14 h-14 bg-ember-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-7 h-7 text-ember-500" />
-              </div>
-              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-forge-50 mb-3">
-                Stay in the loop.
-              </h2>
-              <p className="text-forge-400 mb-8">
-                Get weekly event reminders, restock alerts, and exclusive member
-                offers. No spam — just the games you care about.
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 px-5 py-3 rounded-full bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-700 focus:outline-none focus:ring-2 focus:ring-ember-500/30 focus:border-ember-500/30 text-sm transition-all"
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="group inline-flex items-center justify-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-6 py-3 rounded-full transition-all disabled:opacity-60 text-sm shadow-[0_0_20px_rgba(212,168,83,0.12)] hover:shadow-[0_0_28px_rgba(212,168,83,0.2)] whitespace-nowrap"
+              >
+                {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
+                {status === 'success' ? (
+                  <>
+                    <CheckCircle className="w-4 h-4" />
+                    Subscribed
+                  </>
+                ) : (
+                  <>
+                    Subscribe
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </>
+                )}
+              </button>
+            </form>
+
+            <div className="flex items-center justify-center gap-2 mt-5">
+              <Zap className="w-3 h-3 text-ember-500/60" />
+              <p className="text-[10px] text-forge-600 font-mono tracking-wide">
+                Join 1,200+ subscribers. Unsubscribe anytime.
               </p>
-
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-3 rounded-lg bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
-                />
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="group inline-flex items-center justify-center gap-2 bg-ember-600 hover:bg-ember-500 text-white font-medium px-6 py-3 rounded-lg transition-all disabled:opacity-60 text-sm shadow-lg shadow-ember-600/20 hover:shadow-ember-600/30"
-                >
-                  {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
-                  {status === 'success' ? (
-                    <>
-                      <CheckCircle className="w-4 h-4" />
-                      Subscribed
-                    </>
-                  ) : (
-                    <>
-                      Subscribe
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                    </>
-                  )}
-                </button>
-              </form>
-
-              <div className="flex items-center justify-center gap-2 mt-4">
-                <Zap className="w-3.5 h-3.5 text-ember-500" />
-                <p className="text-xs text-forge-500">
-                  Join 1,200+ subscribers. Unsubscribe anytime.
-                </p>
-              </div>
             </div>
           </div>
         </ScrollReveal>

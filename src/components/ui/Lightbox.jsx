@@ -21,13 +21,13 @@ export function Lightbox({ photos, currentIndex, onClose, onNavigate }) {
 
   return (
     <div
-      className="fixed inset-0 z-[90] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
+      className="fixed inset-0 z-[90] bg-forge-950/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
       onClick={onClose}
     >
       <button
         onClick={(e) => { e.stopPropagation(); onNavigate(-1) }}
         disabled={currentIndex === 0}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white disabled:opacity-20 transition-all"
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-forge-800/50 hover:bg-ember-500/20 text-forge-300 hover:text-ember-400 disabled:opacity-20 transition-all border border-forge-700/30 hover:border-ember-500/30"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
@@ -37,7 +37,7 @@ export function Lightbox({ photos, currentIndex, onClose, onNavigate }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className={`w-full overflow-hidden rounded-xl ${
+          className={`w-full overflow-hidden rounded-2xl ${
             photo.aspect === 'portrait'
               ? 'aspect-[3/4] max-h-[70vh]'
               : photo.aspect === 'square'
@@ -57,9 +57,9 @@ export function Lightbox({ photos, currentIndex, onClose, onNavigate }) {
             </div>
           )}
         </div>
-        <div className="mt-4 text-center">
-          <p className="text-white font-medium text-lg">{photo.title}</p>
-          <p className="text-white/50 text-sm mt-1">
+        <div className="mt-5 text-center">
+          <p className="text-forge-100 font-medium text-lg">{photo.title}</p>
+          <p className="text-forge-500 text-xs mt-1 font-mono tracking-wide">
             {currentIndex + 1} / {photos.length} · {photo.category}
           </p>
         </div>
@@ -68,14 +68,14 @@ export function Lightbox({ photos, currentIndex, onClose, onNavigate }) {
       <button
         onClick={(e) => { e.stopPropagation(); onNavigate(1) }}
         disabled={currentIndex === photos.length - 1}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white disabled:opacity-20 transition-all"
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-forge-800/50 hover:bg-ember-500/20 text-forge-300 hover:text-ember-400 disabled:opacity-20 transition-all border border-forge-700/30 hover:border-ember-500/30"
       >
         <ChevronRight className="w-6 h-6" />
       </button>
 
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all"
+        className="absolute top-4 right-4 p-2 rounded-full bg-forge-800/50 hover:bg-ember-500/20 text-forge-300 hover:text-ember-400 transition-all border border-forge-700/30 hover:border-ember-500/30"
       >
         <X className="w-5 h-5" />
       </button>

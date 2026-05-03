@@ -38,20 +38,20 @@ export function GamesGrid() {
     <section id="games" className="py-24 md:py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <SectionHeader
-          number="01 — The Arsenal"
+          number="01"
           title="Every game. Every system."
           subtitle="We do not just stock shelves — we curate experiences. Each category below represents a dedicated play space, a knowledgeable staff member, and a community of regulars ready to teach, trade, and throw dice."
         />
 
         <div className="mb-10">
           <div className="relative max-w-md">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-forge-500" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-forge-600" />
             <input
               type="text"
               placeholder="Search games..."
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-600 focus:outline-none focus:ring-2 focus:ring-ember-500/40 focus:border-ember-500/40 text-sm transition-all"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-forge-950 border border-forge-800 text-forge-100 placeholder:text-forge-700 focus:outline-none focus:ring-2 focus:ring-ember-500/30 focus:border-ember-500/30 text-sm transition-all"
             />
           </div>
         </div>
@@ -59,24 +59,24 @@ export function GamesGrid() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((cat) => (
             <ScrollReveal key={cat.id}>
-              <div className="group relative bg-forge-900/60 border border-forge-800 hover:border-ember-500/30 rounded-xl p-7 transition-all duration-300 card-hover h-full flex flex-col">
-                <div className="flex items-start justify-between mb-5">
+              <div className="group relative bg-forge-900/40 border border-forge-800/50 hover:border-ember-500/25 rounded-xl p-7 transition-all duration-300 card-hover h-full flex flex-col">
+                <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-ember-500/10 rounded-lg flex items-center justify-center text-ember-500 group-hover:bg-ember-500/20 transition-colors">
-                      <cat.Icon className="w-5 h-5" />
+                    <div className="w-10 h-10 bg-ember-500/10 rounded-full flex items-center justify-center text-ember-500/80 group-hover:bg-ember-500/15 group-hover:text-ember-500 transition-colors">
+                      <cat.Icon className="w-4.5 h-4.5" />
                     </div>
                     <div>
                       <h3 className="font-serif text-lg font-semibold text-forge-100">
                         {cat.title}
                       </h3>
-                      <p className="text-xs text-ember-500 font-medium tracking-wide uppercase">
+                      <p className="text-[10px] text-ember-500/80 font-mono tracking-[0.15em] uppercase mt-0.5">
                         {cat.tagline}
                       </p>
                     </div>
                   </div>
-                  <span className="text-forge-600 text-xs font-mono">{cat.id}</span>
+                  <span className="text-forge-700 text-[10px] font-mono tracking-wider">{cat.id}</span>
                 </div>
-                <p className="text-sm text-forge-400 leading-relaxed mb-5">
+                <p className="text-sm text-forge-500 leading-relaxed mb-5">
                   {cat.description}
                 </p>
                 <ul className="space-y-3 flex-1">
@@ -85,17 +85,17 @@ export function GamesGrid() {
                       key={item.name}
                       className="flex items-start gap-2 text-sm text-forge-300 group/item"
                     >
-                      <ChevronRight className="w-3.5 h-3.5 text-ember-500 mt-0.5 shrink-0" />
+                      <ChevronRight className="w-3.5 h-3.5 text-ember-500/60 mt-0.5 shrink-0" />
                       <div className="flex-1" onClick={() => trackGameClick({ game: item.name, category: cat.title })}>
                         <span className="font-medium text-forge-200">{item.name}</span>
-                        <span className="text-forge-500 ml-1.5">— {item.detail}</span>
+                        <span className="text-forge-600 ml-1.5">— {item.detail}</span>
                       </div>
                       <button
                         onClick={(e) => { e.stopPropagation(); handleWishlist(item.name) }}
                         className={`shrink-0 transition-colors ${
                           wishlist.includes(item.name)
                             ? 'text-ember-500'
-                            : 'text-forge-600 hover:text-ember-500 opacity-0 group-hover/item:opacity-100'
+                            : 'text-forge-700 hover:text-ember-500 opacity-0 group-hover/item:opacity-100'
                         }`}
                         aria-label={wishlist.includes(item.name) ? 'Remove from wishlist' : 'Add to wishlist'}
                       >
@@ -104,7 +104,7 @@ export function GamesGrid() {
                     </li>
                   ))}
                 </ul>
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-ember-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-ember-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </ScrollReveal>
           ))}

@@ -10,13 +10,14 @@ import { formatDuration } from '../lib/utils'
 
 function StatCard({ label, value, icon: Icon }) {
   return (
-    <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6 flex items-center gap-4 card-hover">
-      <div className="w-10 h-10 bg-ember-500/10 rounded-lg flex items-center justify-center text-ember-500">
-        <Icon className="w-5 h-5" />
+    <div className="bg-forge-900/40 border border-forge-800/50 rounded-xl p-6 flex items-center gap-4 card-hover relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-ember-500/30 to-transparent" />
+      <div className="w-10 h-10 bg-ember-500/10 rounded-lg flex items-center justify-center text-ember-500/80">
+        <Icon className="w-4 h-4" />
       </div>
       <div>
-        <div className="text-2xl font-semibold text-forge-100">{value}</div>
-        <div className="text-xs text-forge-500 uppercase tracking-wide">{label}</div>
+        <div className="text-2xl font-semibold text-forge-100 font-mono">{value}</div>
+        <div className="text-[10px] text-forge-500 font-mono tracking-[0.15em] uppercase">{label}</div>
       </div>
     </div>
   )
@@ -27,10 +28,10 @@ function BarRow({ label, value, max }) {
   return (
     <div className="mb-3">
       <div className="flex items-center justify-between text-sm mb-1.5">
-        <span className="text-forge-300">{label}</span>
-        <span className="text-forge-100 font-medium">{value.toLocaleString()}</span>
+        <span className="text-forge-400 text-xs">{label}</span>
+        <span className="text-forge-100 font-medium text-xs font-mono">{value.toLocaleString()}</span>
       </div>
-      <div className="w-full h-2 bg-forge-800 rounded-full overflow-hidden">
+      <div className="w-full h-1.5 bg-forge-800/60 rounded-full overflow-hidden">
         <div
           className="h-full bg-gradient-to-r from-ember-600 to-ember-500 rounded-full transition-all duration-700"
           style={{ width: `${pct}%` }}
@@ -87,33 +88,33 @@ export function AnalyticsPage() {
               title="Engagement Analytics"
               subtitle="Real-time client-side tracking. Data persists in localStorage for this session."
             />
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <button
                 onClick={refresh}
-                className="inline-flex items-center gap-2 bg-forge-900/60 border border-forge-800 hover:border-forge-600 text-forge-300 text-sm font-medium px-4 py-2 rounded-lg transition-all"
+                className="inline-flex items-center gap-2 bg-forge-900/40 border border-forge-800/50 hover:border-forge-600 text-forge-300 text-xs font-mono font-medium px-3 py-2 rounded-lg transition-all tracking-wider uppercase"
               >
-                <RefreshCw className="w-4 h-4" />
+                <RefreshCw className="w-3.5 h-3.5" />
                 Refresh
               </button>
               <button
                 onClick={() => exportAnalyticsJSON()}
-                className="inline-flex items-center gap-2 bg-forge-800 hover:bg-forge-700 text-forge-100 text-sm font-medium px-4 py-2 rounded-lg transition-all border border-forge-700 hover:border-forge-600"
+                className="inline-flex items-center gap-2 bg-forge-800/50 hover:bg-forge-800 text-forge-200 text-xs font-mono font-medium px-3 py-2 rounded-lg transition-all border border-forge-700/50 hover:border-forge-600 tracking-wider uppercase"
               >
-                <Download className="w-4 h-4" />
-                Export JSON
+                <Download className="w-3.5 h-3.5" />
+                Export
               </button>
               <button
                 onClick={handleClear}
-                className="inline-flex items-center gap-2 bg-red-500/10 hover:bg-red-500/15 border border-red-500/20 text-red-400 text-sm font-medium px-4 py-2 rounded-lg transition-all"
+                className="inline-flex items-center gap-2 bg-red-500/10 hover:bg-red-500/15 border border-red-500/20 text-red-400 text-xs font-mono font-medium px-3 py-2 rounded-lg transition-all tracking-wider uppercase"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="w-3.5 h-3.5" />
                 Clear
               </button>
             </div>
           </div>
 
           {cleared && (
-            <div className="mb-6 text-sm text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-lg">
+            <div className="mb-6 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-lg font-mono">
               Analytics data cleared.
             </div>
           )}
@@ -133,12 +134,12 @@ export function AnalyticsPage() {
             </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
+          <div className="grid md:grid-cols-2 gap-5 mb-10">
             <ScrollReveal>
-              <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
-                <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">Top Pages</h3>
+              <div className="bg-forge-900/40 border border-forge-800/50 rounded-xl p-6">
+                <h3 className="font-serif text-base font-semibold text-forge-100 mb-4">Top Pages</h3>
                 {stats.topPages.length === 0 && (
-                  <p className="text-sm text-forge-500">No data yet. Browse the site to populate.</p>
+                  <p className="text-xs text-forge-500">No data yet. Browse the site to populate.</p>
                 )}
                 {stats.topPages.map(([path, count]) => (
                   <BarRow key={path} label={path} value={count} max={topPageMax} />
@@ -147,10 +148,10 @@ export function AnalyticsPage() {
             </ScrollReveal>
 
             <ScrollReveal>
-              <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
-                <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">Top Clicks</h3>
+              <div className="bg-forge-900/40 border border-forge-800/50 rounded-xl p-6">
+                <h3 className="font-serif text-base font-semibold text-forge-100 mb-4">Top Clicks</h3>
                 {stats.topClicks.length === 0 && (
-                  <p className="text-sm text-forge-500">No data yet. Click around to populate.</p>
+                  <p className="text-xs text-forge-500">No data yet. Click around to populate.</p>
                 )}
                 {stats.topClicks.map(([name, count]) => (
                   <BarRow key={name} label={name} value={count} max={topClickMax} />
@@ -159,12 +160,12 @@ export function AnalyticsPage() {
             </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
+          <div className="grid md:grid-cols-2 gap-5 mb-10">
             <ScrollReveal>
-              <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
-                <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">Scroll Depth</h3>
+              <div className="bg-forge-900/40 border border-forge-800/50 rounded-xl p-6">
+                <h3 className="font-serif text-base font-semibold text-forge-100 mb-4">Scroll Depth</h3>
                 {scrollEntries.length === 0 && (
-                  <p className="text-sm text-forge-500">Scroll the site to track depth milestones.</p>
+                  <p className="text-xs text-forge-500">Scroll the site to track depth milestones.</p>
                 )}
                 {scrollEntries.map(([pct, count]) => (
                   <BarRow key={pct} label={pct} value={count} max={scrollMax} />
@@ -173,15 +174,15 @@ export function AnalyticsPage() {
             </ScrollReveal>
 
             <ScrollReveal>
-              <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
-                <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">Conversions</h3>
+              <div className="bg-forge-900/40 border border-forge-800/50 rounded-xl p-6">
+                <h3 className="font-serif text-base font-semibold text-forge-100 mb-4">Conversions</h3>
                 {stats.topConversions.length === 0 && (
-                  <p className="text-sm text-forge-500">No conversions yet. Click CTAs to log them.</p>
+                  <p className="text-xs text-forge-500">No conversions yet. Click CTAs to log them.</p>
                 )}
                 {stats.topConversions.map(([name, count]) => (
-                  <div key={name} className="flex items-center justify-between py-2.5 border-b border-forge-800/50 last:border-0">
-                    <span className="text-sm text-forge-300">{name}</span>
-                    <span className="text-sm font-medium text-forge-100">{count}</span>
+                  <div key={name} className="flex items-center justify-between py-2.5 border-b border-forge-800/40 last:border-0">
+                    <span className="text-xs text-forge-400">{name}</span>
+                    <span className="text-xs font-medium text-forge-100 font-mono">{count}</span>
                   </div>
                 ))}
               </div>
@@ -189,10 +190,10 @@ export function AnalyticsPage() {
           </div>
 
           <ScrollReveal>
-            <div className="bg-forge-900/60 border border-forge-800 rounded-xl p-6">
-              <h3 className="font-serif text-lg font-semibold text-forge-100 mb-4">A/B Test Results</h3>
+            <div className="bg-forge-900/40 border border-forge-800/50 rounded-xl p-6">
+              <h3 className="font-serif text-base font-semibold text-forge-100 mb-4">A/B Test Results</h3>
               {abEntries.length === 0 && (
-                <p className="text-sm text-forge-500">No active tests. Tests run automatically on Home.</p>
+                <p className="text-xs text-forge-500">No active tests. Tests run automatically on Home.</p>
               )}
               <div className="space-y-4">
                 {abEntries.map(([testName, data]) => {
@@ -200,23 +201,23 @@ export function AnalyticsPage() {
                   const conversions = data.conversions || 0
                   const rate = impressions > 0 ? ((conversions / impressions) * 100).toFixed(1) : '0.0'
                   return (
-                    <div key={testName} className="border border-forge-800 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-medium text-forge-100">{testName}</span>
-                        <span className="text-xs text-forge-500">Variant: {data.variant}</span>
+                    <div key={testName} className="border border-forge-800/50 rounded-xl p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="font-medium text-forge-100 text-sm">{testName}</span>
+                        <span className="text-[10px] text-forge-500 font-mono tracking-wide">Variant: {data.variant}</span>
                       </div>
                       <div className="grid grid-cols-3 gap-4 text-sm">
                         <div>
-                          <div className="text-forge-500 text-xs">Impressions</div>
-                          <div className="font-medium text-forge-100">{impressions}</div>
+                          <div className="text-forge-500 text-[10px] font-mono tracking-wide">Impressions</div>
+                          <div className="font-medium text-forge-100 font-mono">{impressions}</div>
                         </div>
                         <div>
-                          <div className="text-forge-500 text-xs">Conversions</div>
-                          <div className="font-medium text-forge-100">{conversions}</div>
+                          <div className="text-forge-500 text-[10px] font-mono tracking-wide">Conversions</div>
+                          <div className="font-medium text-forge-100 font-mono">{conversions}</div>
                         </div>
                         <div>
-                          <div className="text-forge-500 text-xs">Conversion Rate</div>
-                          <div className="font-medium text-ember-500">{rate}%</div>
+                          <div className="text-forge-500 text-[10px] font-mono tracking-wide">Rate</div>
+                          <div className="font-medium text-ember-500 font-mono">{rate}%</div>
                         </div>
                       </div>
                     </div>

@@ -50,7 +50,8 @@ function App() {
           <SkipLink />
           <ScrollToTop />
           <Navbar />
-          <main id="main-content" className="min-h-screen bg-forge-950 text-forge-100 font-sans">
+          <main id="main-content" className="min-h-screen bg-forge-950 text-forge-100 font-sans relative">
+            <div className="grain-overlay" aria-hidden="true" />
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<AnimatedPage><Home /></AnimatedPage>} />

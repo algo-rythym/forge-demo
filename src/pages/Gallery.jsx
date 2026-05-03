@@ -13,10 +13,10 @@ const aspectClasses = {
 }
 
 const categoryColors = {
-  Store: 'bg-ember-600',
-  Events: 'bg-forge-700',
-  Miniatures: 'bg-forge-800',
-  Community: 'bg-ember-700',
+  Store: 'bg-ember-600/80',
+  Events: 'bg-forge-700/80',
+  Miniatures: 'bg-forge-800/80',
+  Community: 'bg-ember-700/80',
 }
 
 export function Gallery() {
@@ -64,10 +64,10 @@ export function Gallery() {
               <button
                 key={cat}
                 onClick={() => { setActiveCategory(cat); setLightboxIndex(null) }}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                   activeCategory === cat
-                    ? 'bg-ember-600 text-white shadow-lg shadow-ember-600/20'
-                    : 'bg-white/5 text-forge-300 border border-forge-700/50 hover:border-ember-500/40 hover:text-forge-100'
+                    ? 'bg-ember-500 text-forge-950 shadow-[0_0_16px_rgba(212,168,83,0.15)]'
+                    : 'bg-white/5 text-forge-500 border border-forge-800/50 hover:border-forge-700 hover:text-forge-300'
                 }`}
               >
                 {cat}
@@ -75,11 +75,11 @@ export function Gallery() {
             ))}
           </div>
 
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
             {filtered.map((photo, i) => (
               <ScrollReveal key={photo.id} delay={i * 0.05}>
                 <div
-                  className="break-inside-avoid bg-forge-900 border border-forge-800 rounded-xl overflow-hidden group cursor-pointer card-hover hover:border-ember-500/30"
+                  className="break-inside-avoid bg-forge-900/30 border border-forge-800/40 rounded-2xl overflow-hidden group cursor-pointer card-hover hover:border-ember-500/20"
                   onClick={() => openLightbox(i)}
                 >
                   <div
@@ -89,7 +89,7 @@ export function Gallery() {
                       <img
                         src={photo.src}
                         alt={photo.title}
-                        className="w-full h-full object-cover image-zoom"
+                        className="w-full h-full object-cover image-zoom saturate-[0.8] group-hover:saturate-100"
                         loading="lazy"
                       />
                     ) : (
@@ -98,17 +98,14 @@ export function Gallery() {
                       </div>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-forge-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-3 left-3"
-                    >
-                      <span className={`text-[10px] font-bold uppercase tracking-wider text-white/90 px-2.5 py-1 rounded-full ${categoryColors[photo.category] || 'bg-forge-800'}`}>
+                    <div className="absolute bottom-3 left-3">
+                      <span className={`text-[10px] font-mono tracking-[0.15em] uppercase text-white/90 px-2.5 py-1 rounded-full ${categoryColors[photo.category] || 'bg-forge-800/80'}`}>
                         {photo.category}
                       </span>
                     </div>
                   </div>
-                  <div className="p-4"
-                  >
-                    <h3 className="font-medium text-forge-100 text-sm group-hover:text-ember-400 transition-colors"
-                    >{photo.title}</h3>
+                  <div className="p-4">
+                    <h3 className="font-medium text-forge-200 text-xs group-hover:text-ember-400 transition-colors">{photo.title}</h3>
                   </div>
                 </div>
               </ScrollReveal>

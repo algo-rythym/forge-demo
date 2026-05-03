@@ -33,7 +33,7 @@ export function AnimatedCounter({ value, suffix = '' }) {
   }, [isInView, value])
 
   return (
-    <span ref={ref}>
+    <span ref={ref} className="font-mono tabular-nums">
       {display}
       {suffix}
     </span>
