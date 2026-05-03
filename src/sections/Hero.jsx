@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar } from 'lucide-react'
+import { ArrowRight, Navigation } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useABTest } from '../hooks/useABTest'
@@ -46,13 +46,13 @@ export function Hero() {
         <div
           className="absolute -top-32 -right-32 w-[700px] h-[700px] rounded-full animate-pulse-glow"
           style={{
-            background: 'radial-gradient(circle, rgba(212,154,58,0.12) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(245,158,40,0.12) 0%, transparent 70%)',
           }}
         />
         <div
           className="absolute -bottom-32 -left-32 w-[600px] h-[600px] rounded-full animate-pulse-glow"
           style={{
-            background: 'radial-gradient(circle, rgba(212,154,58,0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(245,158,40,0.08) 0%, transparent 70%)',
             animationDelay: '2.5s',
           }}
         />
@@ -115,21 +115,23 @@ export function Hero() {
               onClick={handleExplore}
               className={`group inline-flex items-center gap-2.5 font-medium px-7 py-3.5 rounded-xl transition-all duration-300 text-sm ${
                 ctaVariant === 'primary'
-                  ? 'bg-ember-500 hover:bg-ember-400 text-forge-950 shadow-[0_0_24px_rgba(212,154,58,0.15)] hover:shadow-[0_0_32px_rgba(212,154,58,0.25)]'
+                  ? 'bg-ember-500 hover:bg-ember-400 text-forge-950 shadow-[0_0_24px_rgba(245,158,40,0.15)] hover:shadow-[0_0_32px_rgba(245,158,40,0.25)]'
                   : 'border border-forge-600 hover:border-forge-400 text-forge-200 hover:text-forge-50'
               }`}
             >
               Explore the Arsenal
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-2.5 border border-forge-700/60 hover:border-forge-500 text-forge-300 font-medium px-7 py-3.5 rounded-xl transition-all duration-300 bg-forge-950/30 backdrop-blur-sm hover:bg-forge-950/50 text-sm"
-              onClick={() => trackHeroCta({ target: 'view_events' })}
+            <a
+              href="https://maps.google.com/?q=15121+Memorial+Dr+Houston+TX+77079"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2.5 border border-ember-500/40 hover:border-ember-500 text-ember-400 hover:text-ember-300 font-medium px-7 py-3.5 rounded-xl transition-all duration-300 bg-forge-950/30 backdrop-blur-sm hover:bg-ember-500/10 text-sm"
+              onClick={() => trackHeroCta({ target: 'get_directions' })}
             >
-              <Calendar className="w-4 h-4" />
-              View Events
-            </Link>
+              <Navigation className="w-4 h-4" />
+              Get Directions
+            </a>
           </motion.div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 import { Hero } from '../sections/Hero'
-import { StoreInfoBand } from '../sections/StoreInfoBand'
 import { Highlights } from '../sections/Highlights'
 import { TrustBand } from '../sections/TrustBand'
 import { GamesGrid } from '../sections/GamesGrid'
@@ -25,7 +24,6 @@ export function Home() {
         />
       </Helmet>
       <Hero />
-      <StoreInfoBand />
       <Highlights />
       <TrustBand />
       <GamesGrid />

@@ -66,7 +66,7 @@ export function Gallery() {
                 onClick={() => { setActiveCategory(cat); setLightboxIndex(null) }}
                 className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                   activeCategory === cat
-                    ? 'bg-ember-500 text-forge-950 shadow-[0_0_16px_rgba(212,154,58,0.15)]'
+                    ? 'bg-ember-500 text-forge-950 shadow-[0_0_16px_rgba(245,158,40,0.15)]'
                     : 'bg-white/5 text-forge-500 border border-forge-800/50 hover:border-forge-700 hover:text-forge-300'
                 }`}
               >

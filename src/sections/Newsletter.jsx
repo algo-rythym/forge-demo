@@ -29,7 +29,7 @@ export function Newsletter() {
     <section className="py-24 md:py-32 px-6 relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(212,154,58,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(245,158,40,0.06) 0%, transparent 70%)',
         }}
       />
 
@@ -58,7 +58,7 @@ export function Newsletter() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="group inline-flex items-center justify-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-6 py-3 rounded-full transition-all disabled:opacity-60 text-sm shadow-[0_0_20px_rgba(212,154,58,0.12)] hover:shadow-[0_0_28px_rgba(212,154,58,0.2)] whitespace-nowrap"
+                className="group inline-flex items-center justify-center gap-2 bg-ember-500 hover:bg-ember-400 text-forge-950 font-medium px-6 py-3 rounded-full transition-all disabled:opacity-60 text-sm shadow-[0_0_20px_rgba(245,158,40,0.12)] hover:shadow-[0_0_28px_rgba(245,158,40,0.2)] whitespace-nowrap"
               >
                 {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
                 {status === 'success' ? (

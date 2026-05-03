@@ -17,17 +17,17 @@
   --color-forge-900: #161a27;
   --color-forge-950: #0c0f18;
 
-  --color-ember-50:  #fdf5e8;
-  --color-ember-100: #faebd0;
-  --color-ember-200: #f5d8a0;
-  --color-ember-300: #ecc075;
-  --color-ember-400: #e0ae55;
-  --color-ember-500: #d49a3a;
-  --color-ember-600: #b88230;
-  --color-ember-700: #996928;
-  --color-ember-800: #7a5020;
-  --color-ember-900: #5c3b17;
-  --color-ember-950: #3d240f;
+  --color-ember-50:  #fff6e6;
+  --color-ember-100: #ffedcc;
+  --color-ember-200: #ffd999;
+  --color-ember-300: #ffc266;
+  --color-ember-400: #ffae3d;
+  --color-ember-500: #f59e28;
+  --color-ember-600: #db8418;
+  --color-ember-700: #b86a12;
+  --color-ember-800: #94510e;
+  --color-ember-900: #703a0a;
+  --color-ember-950: #4a2406;
 }
 
 html {
@@ -89,7 +89,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #ecc075 0%, #d49a3a 40%, #b88230 100%);
+  background: linear-gradient(135deg, #ffc266 0%, #f59e28 40%, #db8418 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -118,7 +118,7 @@ body {
 
 .card-hover:hover {
   transform: translateY(-5px);
-  box-shadow: 0 24px 48px -14px rgba(212, 154, 58, 0.18);
+  box-shadow: 0 24px 48px -14px rgba(245, 158, 40, 0.18);
 }
 
 .image-zoom {
