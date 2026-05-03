@@ -1,0 +1,9 @@
+services:
+  forge-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: forge-demo
+    ports:
+      - "8080:80"
+    restart: unless-stopped
